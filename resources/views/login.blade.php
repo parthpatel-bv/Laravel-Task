@@ -18,7 +18,7 @@
 
     <div class="wrapper">
         <label for="register">New User Registration</label>
-        <a href="register.php">Register Here</a>
+        <a href="/registration">Register Here</a>
     </div>
 </form>
 @endsection

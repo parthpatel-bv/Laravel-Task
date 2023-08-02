@@ -29,7 +29,9 @@ class UserRequest extends FormRequest
             'email' => array(
                 'required',
                 'email',
-                // 'regex:^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$'
+                'regex:/^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/'
+
+
             ),
             
             'state' => 'max:255',
@@ -38,7 +40,8 @@ class UserRequest extends FormRequest
                 'required',
                 'confirmed',
                 'min:8',
-                // 'regex:/^(?=.*[A-Z])(?=.*[a-z])(?=.*\d).{8,}$/', 
+                'regex:/^(?=.*[A-Z])(?=.*[a-z])(?=.*\d).{8,}$/'
+
             
             ),
             
