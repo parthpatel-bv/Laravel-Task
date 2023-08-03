@@ -11,7 +11,7 @@
     @csrf
     <div class="wrapper">
         <label for="fname">Enter First Name:</label>
-        <input type="text" name="fname" required>
+        <input type="text" name="fname" >
 
         @error('fname')
             <p class="error-message">{{ $message }}</p>
@@ -21,7 +21,7 @@
 
     <div class="wrapper">
         <label for="lname">Enter Last Name:</label>
-        <input type="text" name="lname" required>
+        <input type="text" name="lname" >
 
 
         @error('lname')

@@ -18,9 +18,9 @@
     </div>
 </div>
 <div class="navbar">
-    <a href="#">Standard</a>
-    <a href="#">Subject</a>
-    <a href="#">Chapter</a>
+    <a href="{{ route('standard.index') }}">Standard</a>
+    <a href="{{ route('subject.index') }}">Subject</a>
+    <a href="{{ route('chapter.index') }}">Chapter</a>
 
     <div class="dropdown">
         <button class="dropbtn">Other Operations</button>

@@ -52,6 +52,7 @@ class AuthController extends Controller
         $users = User_data::all();
         
         return view('views', compact('users'));
+        
 
     }
 

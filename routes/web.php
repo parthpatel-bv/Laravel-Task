@@ -1,9 +1,14 @@
 <?php
+use App\Http\Controllers\StandardController;
+use App\Http\Controllers\SubjectController;
+use App\Http\Controllers\ChapterController;
+
 use App\Models\User_data;
 use Illuminate\Routing\RouteRegistrar;
 use Illuminate\Support\Facades\Route;
 use App\Http\Requests\UserRequest;
 use App\Http\Controllers\AuthController;
+
 
 Route::view('/login', 'login')->name('user.login');
 Route::post('/login', [AuthController::class, 'login'])->name('user.login.post');
@@ -36,5 +41,14 @@ Route::get('/edit/{id}',[AuthController::class,'edit'])->name('edit');
 
 Route::put('/update/{id}',[AuthController::class,'update'])->name('update');
 
+//Route::get('/standard',[EducationController::class,'standard'])->name('standard');
+
+Route::resource('standard',StandardController::class)
+        ->only('index','create','store','show','edit','update','destroy');
 
 
+Route::resource('subject',SubjectController::class)
+        ->only('index','create','store','show','edit','update','destroy');
+
+Route::resource('chapter',ChapterController::class)
+        ->only('index','create','store','show','edit','update','destroy');

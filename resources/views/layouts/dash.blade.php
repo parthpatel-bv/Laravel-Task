@@ -11,9 +11,9 @@
 </head>
 
 <body>
-    @if (session()->has('success'))
-        <div>{{ session('success') }}</div>
-    @endif
+    {{-- @if (session()->has('success'))
+        <div>{{ session('success') }}</div> --}}
+    {{-- @endif --}}
     @yield('content')
 
 </body>
