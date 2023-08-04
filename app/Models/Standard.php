@@ -10,4 +10,9 @@ class Standard extends Model
     use HasFactory;
     protected $fillable = ['standard']; 
 
+    public function subjects()
+    {
+        return $this->belongsToMany(Subject::class, 'subTostd');
+    }
+
 }

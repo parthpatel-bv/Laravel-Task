@@ -51,14 +51,14 @@ class AuthController extends Controller
     {
         $users = User_data::all();
         
-        return view('views', compact('users'));
+        return view('users.views', compact('users'));
         
 
     }
 
     public function userview($id){
         $user = User_data::find($id);
-        return view('userview', compact('user'));
+        return view('users.userview', compact('user'));
 
     }
 
@@ -70,7 +70,7 @@ class AuthController extends Controller
 
     public function edit($id){
         $user = User_data::find($id);
-        return view('edit',compact('user'));
+        return view('users.edit',compact('user'));
         }
         public function update(Request $request, $id)
         {

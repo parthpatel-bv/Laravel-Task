@@ -4,15 +4,15 @@
 
 @section('styles')
     <style>
-       
+
     </style>
 @endsection
-<form action=" {{route('update',$user->id)}}" method="POST">
+<form action=" {{ route('update', $user->id) }}" method="POST">
     @csrf
     @method('PUT')
     <div class="wrapper">
         <label for="fname">Enter First Name:</label>
-        <input type="text" name="fname" value="{{$user->fname}}">
+        <input type="text" name="fname" value="{{ $user->fname }}">
 
         @error('fname')
             <p class="error-message">{{ $message }}</p>
@@ -22,7 +22,7 @@
 
     <div class="wrapper">
         <label for="lname">Enter Last Name:</label>
-        <input type="text" name="lname" value="{{$user->lname}}"required>
+        <input type="text" name="lname" value="{{ $user->lname }}"required>
 
 
         @error('lname')
@@ -33,7 +33,7 @@
 
     <div class="wrapper">
         <label for="email">Email:</label>
-        <input type="text" name="email" value="{{$user->email}} "required>
+        <input type="text" name="email" value="{{ $user->email }} "required>
 
         @error('email')
             <p class="error-message">{{ $message }}</p>
@@ -43,7 +43,7 @@
 
     <div class="wrapper">
         <label for="state">State:</label>
-        <input type="text" name="state" value="{{$user->state}}"required>
+        <input type="text" name="state" value="{{ $user->state }}"required>
 
         @error('state')
             <p class="error-message">{{ $message }}</p>
@@ -53,7 +53,7 @@
 
     <div class="wrapper">
         <label for="city">City:</label>
-        <input type="text" name="city" value="{{$user->city}} "required>
+        <input type="text" name="city" value="{{ $user->city }} "required>
 
 
         @error('city')
@@ -63,7 +63,7 @@
 
     <button type="submit">Update</button>
 
-    
+
 </form>
 
 @endsection

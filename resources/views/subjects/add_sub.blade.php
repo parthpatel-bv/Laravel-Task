@@ -4,7 +4,7 @@
 
 @section('styles')
     <style>
-       
+
     </style>
 @endsection
 <form action="{{ route('subject.store') }}" method="POST">
@@ -16,7 +16,7 @@
 
     <button type="submit">Add</button>
 
-    
+
 </form>
 
 @endsection

@@ -12,7 +12,7 @@ class StandardController extends Controller
     public function index()
     {
         $standard = Standard::all();
-        return view('standard',['standard'=>$standard]);
+        return view('standards.standard',['standard'=>$standard]);
     }
 
     /**
@@ -20,7 +20,7 @@ class StandardController extends Controller
      */
     public function create()
     {
-        return view('add_std');
+        return view('standards.add_std');
     }
 
     /**
@@ -48,7 +48,7 @@ class StandardController extends Controller
     public function edit(string $id)
     {
         $std = Standard::find($id);
-        return view('edit_std',compact('std'));
+        return view('standards.edit_std',compact('std'));
     }
 
     /**

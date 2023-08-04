@@ -2,6 +2,8 @@
 use App\Http\Controllers\StandardController;
 use App\Http\Controllers\SubjectController;
 use App\Http\Controllers\ChapterController;
+use App\Http\Controllers\AsiignchapTosubController;
+use App\Http\Controllers\AssignsubTostdController;
 
 use App\Models\User_data;
 use Illuminate\Routing\RouteRegistrar;
@@ -10,15 +12,15 @@ use App\Http\Requests\UserRequest;
 use App\Http\Controllers\AuthController;
 
 
-Route::view('/login', 'login')->name('user.login');
+Route::view('/login', 'users.login')->name('user.login');
 Route::post('/login', [AuthController::class, 'login'])->name('user.login.post');
 
 Route::get('/registration', function () {
-    return view('registration');
+    return view('users.registration');
 });
 
 Route::get('/dashbord',function() {
-    return view('dashbord');
+    return view('users.dashbord');
 })->name('dashbord');
 
 // Route::view('/dashbord', 'dashbord')->name('user.dashbord');
@@ -52,3 +54,19 @@ Route::resource('subject',SubjectController::class)
 
 Route::resource('chapter',ChapterController::class)
         ->only('index','create','store','show','edit','update','destroy');
+
+Route::get('/chaptosub',[AsiignchapTosubController::class,'assign'])
+        ->name('assign.chapTosub');
+
+Route::post('/chaptosub',[AsiignchapTosubController::class,'store'])
+        ->name('store.chapTosub');
+
+
+Route::get('/subtostd',[AssignsubTostdController::class,'assign'])
+        ->name('assign.subtostd');
+
+Route::post('/subtostd',[AssignsubTostdController::class,'store'])
+        ->name('store.subtostd');
+
+
+

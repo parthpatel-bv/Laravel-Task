@@ -4,14 +4,14 @@
 
 @section('styles')
     <style>
-       
+
     </style>
 @endsection
 <form action="{{ route('user.store') }}" method="POST">
     @csrf
     <div class="wrapper">
         <label for="fname">Enter First Name:</label>
-        <input type="text" name="fname" >
+        <input type="text" name="fname">
 
         @error('fname')
             <p class="error-message">{{ $message }}</p>
@@ -21,7 +21,7 @@
 
     <div class="wrapper">
         <label for="lname">Enter Last Name:</label>
-        <input type="text" name="lname" >
+        <input type="text" name="lname">
 
 
         @error('lname')

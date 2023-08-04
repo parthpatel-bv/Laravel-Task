@@ -12,7 +12,7 @@ class ChapterController extends Controller
     public function index()
     {
         $chapter = Chapter::all();
-        return view('chapter',['chapter'=>$chapter]);
+        return view('chapters.chapter',['chapter'=>$chapter]);
     }
 
     /**
@@ -20,7 +20,7 @@ class ChapterController extends Controller
      */
     public function create()
     {
-        return view('add_chap');
+        return view('chapters.add_chap');
     }
 
     /**
@@ -47,7 +47,7 @@ class ChapterController extends Controller
     public function edit(string $id)
     {
         $chapter = Chapter::find($id);
-        return view('edit_chap',compact('chapter'));
+        return view('chapters.edit_chap',compact('chapter'));
     }
 
     /**
