@@ -4,19 +4,22 @@ use App\Http\Controllers\SubjectController;
 use App\Http\Controllers\ChapterController;
 use App\Http\Controllers\AsiignchapTosubController;
 use App\Http\Controllers\AssignsubTostdController;
-
+use App\Models\Accesstype;
+use App\Models\Usertype;
 use App\Models\User_data;
-use Illuminate\Routing\RouteRegistrar;
 use Illuminate\Support\Facades\Route;
 use App\Http\Requests\UserRequest;
 use App\Http\Controllers\AuthController;
+use App\Http\Controllers\Assignstdtostucontroller;
 
-
+// route::view('','login');
 Route::view('/login', 'users.login')->name('user.login');
 Route::post('/login', [AuthController::class, 'login'])->name('user.login.post');
 
-Route::get('/registration', function () {
-    return view('users.registration');
+Route::get('/registration', function () 
+{
+        $accesstype = Accesstype::all();
+    return view('users.registration',['accesstype'=>$accesstype]);
 });
 
 Route::get('/dashbord',function() {
@@ -27,6 +30,12 @@ Route::get('/dashbord',function() {
 
 Route::post('/user', function (UserRequest $request) {
     $user = User_data::create($request->validated());
+
+    $user_type = new usertype();
+    $user_type->userid = $user->id;
+    $user_type->access_id = $request->input('access_type');
+    $user_type->save();
+
     return redirect()->route('user.login')
         ->with('success', 'User ' . $user['fname'] . ' registered successfully!');
 })->name('user.store');
@@ -69,4 +78,9 @@ Route::post('/subtostd',[AssignsubTostdController::class,'store'])
         ->name('store.subtostd');
 
 
+Route::get('/stdtostu',[Assignstdtostucontroller::class,'assign'])
+        ->name('assign.stdtostu');
+
+Route::post('/stdtostu',[Assignstdtostucontroller::class,'store'])
+        ->name('store.stdtostu');
 

@@ -33,6 +33,7 @@ class UserRequest extends FormRequest
 
 
             ),
+            'access_type' => 'required',
             
             'state' => 'max:255',
             'city' => 'max:255',

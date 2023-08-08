@@ -21,7 +21,8 @@ class AsiignchapTosubController extends Controller
         $chap_id = $request->input('chapter',[]);
 
         $subject = Subject::find($sub_id);
-        dd($subject->chapters()->sync($chap_id));
+        $subject->chapters()->sync($chap_id);
+        return redirect()->route('assign.chapTosub');
         
     }
 }

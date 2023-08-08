@@ -14,5 +14,8 @@ class Standard extends Model
     {
         return $this->belongsToMany(Subject::class, 'subTostd');
     }
-
+    public function students()
+    {
+        return $this->belongsToMany(User_data::class, 'stdtostu');
+    }
 }

@@ -35,7 +35,7 @@
             <div class="dropdown-content">
                 <a href="{{ route('assign.chapTosub')}}">Assign Chapter to Subject</a>
                 <a href="{{ route('assign.subtostd')}}">Assign Subject to Standard</a>
-                <a href="#">Assign Student to Standard</a>
+                <a href="{{ route('assign.stdtostu')}}">Assign Student to Standard</a>
             </div>
         </div>
     </div>

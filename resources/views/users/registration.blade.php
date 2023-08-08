@@ -40,6 +40,18 @@
 
     </div>
 
+
+    <div class="wrapper">
+        <label for="accesstype">Select User Type:</label><br>
+        <select name="access_type" id="accesstype">
+            <?php foreach ($accesstype as $accesstype):?>
+            <option value="<?php echo $accesstype['id']; ?>"><?php echo $accesstype['access_type']; ?></option>
+            <?php endforeach; ?>
+        </select>
+    </div>
+
+
+
     <div class="wrapper">
         <label for="state">State:</label>
         <input type="text" name="state" required>

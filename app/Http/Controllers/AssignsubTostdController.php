@@ -15,9 +15,11 @@ class AssignsubTostdController extends Controller
 
     public function store(Request $request){
         $standardID = $request->input('standard');
-        $subjectId = $request->input('subjects',[]);
-
+        $subjectId = $request->input('subject',[]);
+        // dd($standardID,$subjectId);
         $standard = Standard::find($standardID);
         $standard->subjects()->sync($subjectId);
+        return redirect()->route('assign.subtostd');
+
     }
 }
