@@ -12,8 +12,8 @@
             @endforeach
         </select><br><br>
 
-        <label>Subjetc:</label>
-        <select name="students[]" multiple required>
+        <label>Student:</label>
+        <select name="student[]" multiple required>
             @foreach ($student as $stu)
                 <option value="{{ $stu->userid }}">{{ $stu->fname }}</option>
             @endforeach

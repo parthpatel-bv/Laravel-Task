@@ -9,7 +9,7 @@ class Accesstype extends Model
 {
     use HasFactory;
     
-    public function user_data(){
-        return $this->hasMany(User_data::class);
+    public function Userdata(){
+        return $this->hasMany(Userdata::class);
     }
 }

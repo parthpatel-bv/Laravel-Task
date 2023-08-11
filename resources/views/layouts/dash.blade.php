@@ -15,12 +15,15 @@
     <div class="container">
         <div class="header">
             <div class="profile">
-                
-                <h3>Welcome, {{ session('data')['fname'] }}</h3>
+
+                <h3> Welcome, {{ session('fname') }} {{ session('lname')}}</h3>  
+
             </div>
             <div class="menu">
-                <a href="/listuser">List All Users</a>
-                <a href="/registration">Add User</a>
+                @if (session('access_type') == 'Admin' || session('access_type') == 'Teacher')
+                    <a href="/listuser">List All Users</a>
+                    <a href="/registration">Add User</a>
+                @endif
                 <a href="/logout">Logout</a>
             </div>
         </div>
@@ -29,17 +32,17 @@
         <a href="{{ route('standard.index') }}">Standard</a>
         <a href="{{ route('subject.index') }}">Subject</a>
         <a href="{{ route('chapter.index') }}">Chapter</a>
-    
+
         <div class="dropdown">
             <button class="dropbtn">Other Operations</button>
             <div class="dropdown-content">
-                <a href="{{ route('assign.chapTosub')}}">Assign Chapter to Subject</a>
-                <a href="{{ route('assign.subtostd')}}">Assign Subject to Standard</a>
-                <a href="{{ route('assign.stdtostu')}}">Assign Student to Standard</a>
+                <a href="{{ route('assign.chapTosub') }}">Assign Chapter to Subject</a>
+                <a href="{{ route('assign.subtostd') }}">Assign Subject to Standard</a>
+                <a href="{{ route('assign.stdtostu') }}">Assign Student to Standard</a>
             </div>
         </div>
     </div>
-    
+
     @yield('content')
 
 </body>

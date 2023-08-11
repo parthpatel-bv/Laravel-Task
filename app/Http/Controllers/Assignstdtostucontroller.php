@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Standard;
-use App\Models\User_data;
+use App\Models\Userdata;
 use App\Models\Usertype; // Assuming you have Usertype, Userdata, and Accesstype models
 
 
@@ -15,8 +15,8 @@ class Assignstdtostucontroller extends Controller
         $standard = Standard::all();
         $check = 'Student';
 
-        $students = Usertype::select('usertypes.userid', 'user_datas.fname')
-            ->join('user_datas', 'user_datas.id', '=', 'usertypes.userid')
+        $students = Usertype::select('usertypes.userid', 'userdatas.fname')
+            ->join('userdatas', 'userdatas.id', '=', 'usertypes.userid')
             ->join('accesstypes', 'accesstypes.id', '=', 'usertypes.access_id')
             ->where('accesstypes.access_type', $check)
             ->get();
@@ -27,7 +27,7 @@ class Assignstdtostucontroller extends Controller
 
     public function store(Request $request){
         $std_id = $request->input('standard');
-        $student_id = $request->input('students',[]);
+        $student_id = $request->input('student',[]);
         $standard = Standard::find($std_id);
         $standard->students()->sync($student_id);
         return redirect()->route('assign.stdtostu');
