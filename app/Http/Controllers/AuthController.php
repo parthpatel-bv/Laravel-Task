@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\UserRequest;
 use App\Models\Userdata;
+use Illuminate\Auth\Events\Registered;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Facades\DB;
@@ -15,13 +16,41 @@ use App\Models\Accesstype;
 
 class AuthController extends Controller
 {
+
+    public function register(UserRequest $request){
+        $validatedData = $request->validated();
+    
+        $hashedPassword = Hash::make($validatedData['password']);
+    
+        $user = Userdata::create([
+            'fname' => $validatedData['fname'],
+            'lname' => $validatedData['lname'],
+            'email' => $validatedData['email'],
+            'state' => $validatedData['state'],
+            'city' => $validatedData['city'],
+            'password' => $hashedPassword, // Use the hashed password
+          
+            // ... other fields
+        ]);
+        event(new Registered($user));
+        // Create a new user_type record
+        $user_type = new usertype();
+        $user_type->userid = $user->id;
+        $user_type->access_id = $validatedData['access_type'];
+        $user_type->save();
+    
+        return redirect()->route('user.login')
+            ->with('success', 'User ' . $user->fname . ' registered successfully!');
+    }
+    
     public function login(Request $request)
     {
         $credentials = $request->validate([
             'email' => 'required|email',
             'password' => 'required',
         ]);
-     
+    
+        
 
         $user = Userdata::where('email',$request->email)->first();
         if (Auth::attempt($credentials)) {
@@ -32,9 +61,8 @@ class AuthController extends Controller
             session(['email'=>$user->email]);
             session(['state'=>$user->state]);
             session(['city'=>$user->city]);
-
             $userType = Usertype::where('userid', session('id'))->first();
-            $accessType = Accesstype::where('id',$userType)->value('access_type');
+            $accessType = Accesstype::where('id',$userType->access_id)->value('access_type');
             session(['access_type' => $accessType]);
 
             return redirect()->route('dashbord');

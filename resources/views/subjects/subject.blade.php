@@ -3,9 +3,11 @@
 @section('title', 'Dashboard')
 @section('content')
     <div>
-        <div>
-            <a href="{{ route('subject.create') }}">Add subject</a>
-        </div>
+        @if (session('access_type') == 'Admin' || session('access_type') == 'Teacher')
+            <div>
+                <a href="{{ route('subject.create') }}">Add subject</a>
+            </div>
+        @endif
         <table align="center" border="1px">
             <tr>
                 <th colspan="4">
@@ -15,23 +17,26 @@
             <tr> <!-- Opening the <tr> tag here -->
                 <th> subject Id </th>
                 <th> Subject</th>
-                <th>Edit</th>
-                <th>Delete</th>
+                @if (session('access_type') == 'Admin' || session('access_type') == 'Teacher')
+                    <th>Edit</th>
+                    <th>Delete</th>
+                @endif
             </tr>
             @forelse ($subject as $subject)
                 <tr> <!-- Move the <tr> tag here -->
                     <td>{{ $subject->id }}</td>
                     <td>{{ $subject->subject }}</td>
-                    <td><a href="{{ route('subject.edit', $subject->id) }}">Edit</td>
-                    {{-- <td><a href="{{ route('subject.destroy', $subject->id) }}">Delete</a></td> --}}
-                    <td>
-                        <form action="{{ route('subject.destroy', $subject->id) }}" method="POST">
-                            @csrf
-                            @method('DELETE')
-                            <input type="submit" value="Delete">
-                        </form>
-                    </td>
+                    @if (session('access_type') == 'Admin' || session('access_type') == 'Teacher')
+                        <td><a href="{{ route('subject.edit', $subject->id) }}">Edit</td>
 
+                        <td>
+                            <form action="{{ route('subject.destroy', $subject->id) }}" method="POST">
+                                @csrf
+                                @method('DELETE')
+                                <input type="submit" value="Delete">
+                            </form>
+                        </td>
+                    @endif
                 </tr>
             @empty
                 <tr>

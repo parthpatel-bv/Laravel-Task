@@ -32,7 +32,8 @@
         <a href="{{ route('standard.index') }}">Standard</a>
         <a href="{{ route('subject.index') }}">Subject</a>
         <a href="{{ route('chapter.index') }}">Chapter</a>
-
+        
+        @if (session('access_type') == 'Admin' || session('access_type') == 'Teacher')
         <div class="dropdown">
             <button class="dropbtn">Other Operations</button>
             <div class="dropdown-content">
@@ -41,6 +42,9 @@
                 <a href="{{ route('assign.stdtostu') }}">Assign Student to Standard</a>
             </div>
         </div>
+        @endif
+
+
     </div>
 
     @yield('content')
