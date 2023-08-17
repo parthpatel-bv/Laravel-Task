@@ -15,6 +15,9 @@
     <h4>Email id : {{ $user['email'] }} </h4>
     <h4>State : {{ $user['state'] }} </h4>
     <h4>City : {{ $user['city'] }} </h4>
+
+   
+    
 </body>
 
 </html>

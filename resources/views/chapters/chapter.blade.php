@@ -15,7 +15,7 @@
         </tr>
         <tr> <!-- Opening the <tr> tag here -->
             <th> Chapter Id </th>
-            <th> Chapter</th>
+            <th> Chapter </th>
             @if (session('access_type') == 'Admin' || session('access_type') == 'Teacher')
                 <th>Edit</th>
                 <th>Delete</th>

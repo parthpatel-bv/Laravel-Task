@@ -73,7 +73,6 @@ Route::get('/chaptosub',[AsiignchapTosubController::class,'assign'])
 Route::post('/chaptosub',[AsiignchapTosubController::class,'store'])
         ->name('store.chapTosub')->middleware(['auth','verified']);
 
-
 Route::get('/subtostd',[AssignsubTostdController::class,'assign'])
         ->name('assign.subtostd')->middleware(['auth','verified']);
 
@@ -86,3 +85,8 @@ Route::get('/stdtostu',[Assignstdtostucontroller::class,'assign'])
 
 Route::post('/stdtostu',[Assignstdtostucontroller::class,'store'])
         ->name('store.stdtostu')->middleware(['auth','verified']);
+
+Route::get('/storeimage/{user_id}/{fname}',[AuthController::class,'showImageUploadForm'])->name('image.store');
+
+Route::post('/storeimage',[AuthController::class,'storeimage'])
+        ->name('store.image')->middleware(['auth','verified']);

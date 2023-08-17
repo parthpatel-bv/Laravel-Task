@@ -61,8 +61,16 @@
         @enderror
     </div>
 
-    <button type="submit">Update</button>
+    <div class="wrapper"></div>
 
+        <label for="image">Upload image : </label>
+        <a href="{{ route('image.store', ['user_id' => $user->id, 'fname' => $user->fname]) }}">
+            <button type="button">Insert Image</button>
+        </a>
+        
+    </div>
+
+    <button type="submit">Update</button>
 
 </form>
 
