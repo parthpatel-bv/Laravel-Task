@@ -90,3 +90,5 @@ Route::get('/storeimage/{user_id}/{fname}',[AuthController::class,'showImageUplo
 
 Route::post('/storeimage',[AuthController::class,'storeimage'])
         ->name('store.image')->middleware(['auth','verified']);
+
+Route::post('/chapterstatus',[ChapterController::class,'status'])->name('chapter.status');

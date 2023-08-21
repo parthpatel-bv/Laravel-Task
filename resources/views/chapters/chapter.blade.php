@@ -9,14 +9,16 @@
     @endif
     <table align="center" border="1px">
         <tr>
-            <th colspan="4">
+            <th colspan="6">
                 <h2>Chapters</h2>
             </th>
         </tr>
         <tr> <!-- Opening the <tr> tag here -->
-            <th> Chapter Id </th>
-            <th> Chapter </th>
+                <th> Chapter Id </th>
+                <th> Chapter </th>
             @if (session('access_type') == 'Admin' || session('access_type') == 'Teacher')
+                <th>Status</th>
+                <th>Change Status</th>
                 <th>Edit</th>
                 <th>Delete</th>
             @endif
@@ -26,6 +28,24 @@
                 <td>{{ $chapter->id }}</td>
                 <td>{{ $chapter->chapter }}</td>
                 @if (session('access_type') == 'Admin' || session('access_type') == 'Teacher')
+                    <td>
+                        @if ($chapter->status == true)
+                            {{'Active'}}
+                            @else
+                            {{'Deactive'}}                            
+                        @endif
+
+                    </td>
+                    <td>
+                        <form action="{{ route('chapter.status', ['id' => $chapter->id]) }}" method="post">
+                            @csrf
+                            {{-- @method('PUT') --}}
+                            <button name="status">
+                                {{$chapter->status ? 'Deactivate' : 'Activate'}}
+                            </button>
+                        
+                        </form>
+                    </td>
                     <td><a href="{{ route('chapter.edit', $chapter->id) }}">Edit</td>
                     <td>
                         <form action="{{ route('chapter.destroy', $chapter->id) }}" method="POST">

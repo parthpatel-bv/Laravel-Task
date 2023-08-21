@@ -23,4 +23,8 @@ class Userdata extends Authenticatable implements MustVerifyEmail
     public function usertype(){
         return $this->hasOne(Usertype::class);
     }
+
+    public function image(){
+        return $this->hasOne(Image::class);
+    }   
 }

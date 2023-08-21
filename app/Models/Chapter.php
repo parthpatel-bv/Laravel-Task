@@ -8,7 +8,7 @@ use Illuminate\Database\Eloquent\Model;
 class Chapter extends Model
 {
     use HasFactory;
-    protected $fillable = ['chapter']; 
+    protected $fillable = ['chapter','status']; 
     public function subjects()
     {
         return $this->belongsToMany(Subject::class, 'chapTosub');

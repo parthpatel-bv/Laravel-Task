@@ -6,6 +6,8 @@ use Illuminate\Auth\Events\Registered;
 use Illuminate\Auth\Listeners\SendEmailVerificationNotification;
 use Illuminate\Foundation\Support\Providers\EventServiceProvider as ServiceProvider;
 use Illuminate\Support\Facades\Event;
+use App\Events\SubjectStatusChanged;
+use App\Listeners\SendSubjectStatusemail;
 
 class EventServiceProvider extends ServiceProvider
 {
@@ -18,6 +20,9 @@ class EventServiceProvider extends ServiceProvider
         Registered::class => [
             SendEmailVerificationNotification::class,
         ],
+        SubjectStatusChanged::class => [
+            SendSubjectStatusemail::class,
+        ],
     ];
 
     /**
@@ -25,7 +30,8 @@ class EventServiceProvider extends ServiceProvider
      */
     public function boot(): void
     {
-        //
+        // Event::listen(SubjectStatusChanged::class,
+        //     [SendSubjectStatusemail::class]);  
     }
 
     /**

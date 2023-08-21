@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 use App\Models\Chapter;
 use Illuminate\Http\Request;
-
+use App\Events\SubjectStatusChanged;
 class ChapterController extends Controller
 {
     /**
@@ -69,6 +69,23 @@ class ChapterController extends Controller
         
         $chapter = Chapter::find($id);
         $chapter->delete();
+        return redirect()->route('chapter.index');
+    }
+
+    public function status(Request $request){
+        // dd($request->id,$request->status,$request->name);
+        $chapter = Chapter::findorfail($request->id);
+        
+        if($chapter->status == true){
+            $chapter->status = false;
+            $chapter->save();
+            event(new SubjectStatusChanged($chapter));
+        }
+        else{
+            $chapter->status = true;
+            $chapter->save();
+            event(new SubjectStatusChanged($chapter));
+        }
         return redirect()->route('chapter.index');
     }
 }

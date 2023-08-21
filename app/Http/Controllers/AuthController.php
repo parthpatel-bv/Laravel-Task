@@ -1,6 +1,8 @@
 <?php
 
 namespace App\Http\Controllers;
+use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Storage;
 
 use App\Http\Requests\UserRequest;
 use App\Jobs\sendWelcomeEmail;
@@ -9,12 +11,12 @@ use Illuminate\Auth\Events\Registered;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Session;
-use Illuminate\Support\Facades\Storage;
-use Hash;
 use Illuminate\Support\Facades\Auth;
 use App\Models\Usertype;
 use App\Models\Accesstype;
 use App\Mail\WelcomeMail;
+use App\Models\Image;
+
 class AuthController extends Controller
 {
 
@@ -148,25 +150,21 @@ class AuthController extends Controller
             return view('users.storeimage', compact('user_id', 'fname'));
         }
         
+        
     public function storeimage(Request $request){
-        $hasfile = $request->hasFile('image');
         $user_id = $request->input('user_id');
         $fname = $request->input('fname');
-        dump($user_id,$fname);
+        $userdatas = Userdata::findOrFail($user_id);
+        // dump($user_id,$fname);
+        // $user_image = Userdata::create();
         // dump($user_id);
         // dump($fname);
-        if($hasfile){
-            $file = $request->file('image');
-            dump($file->getClientMimeType());
-            dump($file->getClientOriginalExtension());
-            dump($file);
-            // dump($file->store('images'));
-            $name1 = $file->storeAs('images', $fname . '_' . $user_id . '.' . $file->guessExtension());
-            $name2 = Storage::disk('local')->putFileAs('images',$file,$fname . '_' . $user_id . '.' . $file->guessExtension());
-            dump(Storage::url($name1));
-            dump(Storage::disk('local')->url($name2));
-            die;
-
+        if($request->hasFile('image')){
+            $path = $request->file('image')->store('images');
+            $userdatas->image()->save(
+                Image::create(['path'=>$path])
+            );
+            // die;
         }
     }
 }
