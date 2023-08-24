@@ -76,7 +76,6 @@ class AuthController extends Controller
             $userType = Usertype::where('userid', session('id'))->first();
             $accessType = Accesstype::where('id',$userType->access_id)->value('access_type');
             session(['access_type' => $accessType]);
-
             return redirect()->route('dashbord');
         } else {
             return redirect('login')->withErrors(['email' => 'Invalid credentials']);
@@ -155,16 +154,22 @@ class AuthController extends Controller
         $user_id = $request->input('user_id');
         $fname = $request->input('fname');
         $userdatas = Userdata::findOrFail($user_id);
-        // dump($user_id,$fname);
-        // $user_image = Userdata::create();
-        // dump($user_id);
-        // dump($fname);
+    
         if($request->hasFile('image')){
             $path = $request->file('image')->store('images');
             $userdatas->image()->save(
                 Image::create(['path'=>$path])
             );
-            // die;
         }
+        return redirect()->route('dashbord');
     }
+
+    public function dashbord() {
+    $user_id = Auth::user()->id;
+    $path = Image::where('userdata_id', '=', $user_id)->value('path');
+    // return view('users.dashbord', ['path' => $path]);
+    session(['final_path' => $path]);
+    return view ('users.dashbord');
+}
+
 }

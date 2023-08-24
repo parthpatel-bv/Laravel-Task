@@ -39,9 +39,11 @@ Route::get('/email/verify/{id}/{hash}', function (EmailVerificationRequest $requ
     })->middleware(['auth', 'signed'])->name('verification.verify');
 
 
-Route::get('/dashbord',function() {
-    return view('users.dashbord');
-})->name('dashbord')->middleware('auth');
+// Route::get('/dashbord',function() {
+//     return view('users.dashbord');
+// })->name('dashbord')->middleware('auth');
+
+Route::get('/dashbord',[AuthController::class,'dashbord'])->name('dashbord')->middleware('auth');
 
 Route::post('/user',[AuthController::class,'register'])->name('user.store');
 
