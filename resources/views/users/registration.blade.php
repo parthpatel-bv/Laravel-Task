@@ -16,7 +16,7 @@
         @error('fname')
             <p class="error-message">{{ $message }}</p>
         @enderror
-
+        
     </div>
 
     <div class="wrapper">

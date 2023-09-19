@@ -1,6 +1,7 @@
 <?php
 
 namespace App\Http\Controllers;
+
 use App\Models\Subject;
 use Illuminate\Http\Request;
 
@@ -12,7 +13,7 @@ class SubjectController extends Controller
     public function index()
     {
         $subject = Subject::all();
-        return view('subjects.subject',['subject'=>$subject]);
+        return view('subjects.subject', ['subject' => $subject]);
     }
 
     /**
@@ -47,7 +48,7 @@ class SubjectController extends Controller
     public function edit(string $id)
     {
         $subject = Subject::find($id);
-        return view('subjects.edit_sub',compact('subject'));
+        return view('subjects.edit_sub', compact('subject'));
     }
 
     /**
@@ -69,6 +70,5 @@ class SubjectController extends Controller
         $subject = Subject::find($id);
         $subject->delete();
         return redirect()->route('subject.index');
-
     }
 }

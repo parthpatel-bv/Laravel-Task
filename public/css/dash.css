@@ -23,13 +23,22 @@
 .header {
     display: flex;
     justify-content: space-between;
+    align-items: center;
 }
 
-.header .image img {
+.profile-box{
+    display: flex;
+    column-gap: 30px;
+    align-items: center;
+}
+
+.header .profile-image img {
     border-radius: 50%;
     width: 60px;
     height: 60px;
+    object-fit: cover;
 }
+
 
 .menu a {
     color: whitesmoke;

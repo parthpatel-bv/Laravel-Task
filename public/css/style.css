@@ -9,11 +9,22 @@
     color: red;
     font-size: 0.8rem;
 }
+body{
+    height: 105vh;
+    /* width: auto; */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+}
+
 
 /* Apply some basic styling to the form */
 form {
     max-width: 400px;
     margin: 0 auto;
+    display: flex;
+    flex-direction: column;
     padding: 20px;
     border: 1px solid #ccc;
     border-radius: 5px;
@@ -23,6 +34,10 @@ form {
 /* Style the form wrapper */
 .wrapper {
     margin-bottom: 15px;
+}
+
+.wrapper > input{
+    width: 100%;
 }
 
 /* Style the labels */
@@ -51,6 +66,7 @@ button[type="submit"] {
     border: none;
     border-radius: 3px;
     cursor: pointer;
+    margin-bottom: 20px;
 }
 
 button[type="submit"]:hover {

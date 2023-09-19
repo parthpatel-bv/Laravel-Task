@@ -1,6 +1,7 @@
 <?php
 
 namespace App\Http\Controllers;
+
 use App\Models\Standard;
 use Illuminate\Http\Request;
 
@@ -12,7 +13,7 @@ class StandardController extends Controller
     public function index()
     {
         $standard = Standard::all();
-        return view('standards.standard',['standard'=>$standard]);
+        return view('standards.standard', ['standard' => $standard]);
     }
 
     /**
@@ -31,7 +32,6 @@ class StandardController extends Controller
         $standard = $request->all();
         Standard::create($standard);
         return redirect()->route('standard.index');
-
     }
 
     /**
@@ -48,7 +48,7 @@ class StandardController extends Controller
     public function edit(string $id)
     {
         $std = Standard::find($id);
-        return view('standards.edit_std',compact('std'));
+        return view('standards.edit_std', compact('std'));
     }
 
     /**
@@ -70,6 +70,5 @@ class StandardController extends Controller
         $std = Standard::find($id);
         $std->delete();
         return redirect()->route('standard.index');
-
     }
 }

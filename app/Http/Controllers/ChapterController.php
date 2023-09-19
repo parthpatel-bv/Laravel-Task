@@ -1,9 +1,11 @@
 <?php
 
 namespace App\Http\Controllers;
+
 use App\Models\Chapter;
 use Illuminate\Http\Request;
 use App\Events\SubjectStatusChanged;
+
 class ChapterController extends Controller
 {
     /**
@@ -12,7 +14,7 @@ class ChapterController extends Controller
     public function index()
     {
         $chapter = Chapter::all();
-        return view('chapters.chapter',['chapter'=>$chapter]);
+        return view('chapters.chapter', ['chapter' => $chapter]);
     }
 
     /**
@@ -47,7 +49,7 @@ class ChapterController extends Controller
     public function edit(string $id)
     {
         $chapter = Chapter::find($id);
-        return view('chapters.edit_chap',compact('chapter'));
+        return view('chapters.edit_chap', compact('chapter'));
     }
 
     /**
@@ -66,22 +68,22 @@ class ChapterController extends Controller
      */
     public function destroy(string $id)
     {
-        
+
         $chapter = Chapter::find($id);
         $chapter->delete();
         return redirect()->route('chapter.index');
     }
 
-    public function status(Request $request){
+    public function status(Request $request)
+    {
         // dd($request->id,$request->status,$request->name);
         $chapter = Chapter::findorfail($request->id);
-        
-        if($chapter->status == true){
+
+        if ($chapter->status == true) {
             $chapter->status = false;
             $chapter->save();
             event(new SubjectStatusChanged($chapter));
-        }
-        else{
+        } else {
             $chapter->status = true;
             $chapter->save();
             event(new SubjectStatusChanged($chapter));

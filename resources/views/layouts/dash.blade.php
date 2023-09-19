@@ -14,14 +14,15 @@
 
     <div class="container">
         <div class="header">
-
+        <div class="profile-box">
             <div class="profile-image">
                 <img src="{{ 'http://127.0.0.1:8000/storage/' . session('final_path') }}" />
             </div>
-
+            
             <div class="profile">
                 <h3> Welcome, {{ session('fname') }} {{ session('lname') }}</h3>
             </div>
+        </div>
 
             <div class="menu">
                 @if (session('access_type') == 'Admin' || session('access_type') == 'Teacher')
